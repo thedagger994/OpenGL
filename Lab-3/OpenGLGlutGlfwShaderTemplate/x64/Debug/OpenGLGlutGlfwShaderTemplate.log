@@ -1,0 +1,3 @@
+﻿  Week3-7-UniformDemo.cpp
+C:\Users\theda\Documentos\Repos\OpenGL\Week3\Week3-7-UniformDemo.cpp(172,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  OpenGLGlutGlfwShaderTemplate.vcxproj -> C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\x64\Debug\OpenGLGlutGlfwShaderTemplate.exe

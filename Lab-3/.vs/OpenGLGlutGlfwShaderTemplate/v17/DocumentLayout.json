@@ -1,0 +1,120 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Lab-3\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C9FBC251-848A-4A85-8F07-6551E7A7A4C6}|OpenGLGlutGlfwShaderTemplate\\OpenGLGlutGlfwShaderTemplate.vcxproj|C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Week3\\Week3-7-UniformDemo.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9FBC251-848A-4A85-8F07-6551E7A7A4C6}|OpenGLGlutGlfwShaderTemplate\\OpenGLGlutGlfwShaderTemplate.vcxproj|C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Lab-3\\OpenGLGlutGlfwShaderTemplate\\Week3-3-SemiAutomaticAnimationCube.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C9FBC251-848A-4A85-8F07-6551E7A7A4C6}|OpenGLGlutGlfwShaderTemplate\\OpenGLGlutGlfwShaderTemplate.vcxproj|solutionrelative:OpenGLGlutGlfwShaderTemplate\\Week3-3-SemiAutomaticAnimationCube.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9FBC251-848A-4A85-8F07-6551E7A7A4C6}|OpenGLGlutGlfwShaderTemplate\\OpenGLGlutGlfwShaderTemplate.vcxproj|C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Week3\\Week3-6-InteractiveAnimationCube.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9FBC251-848A-4A85-8F07-6551E7A7A4C6}|OpenGLGlutGlfwShaderTemplate\\OpenGLGlutGlfwShaderTemplate.vcxproj|C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Lab-3\\OpenGLGlutGlfwShaderTemplate\\Week3-4-SemiAutomaticAnimationQuad.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C9FBC251-848A-4A85-8F07-6551E7A7A4C6}|OpenGLGlutGlfwShaderTemplate\\OpenGLGlutGlfwShaderTemplate.vcxproj|solutionrelative:OpenGLGlutGlfwShaderTemplate\\Week3-4-SemiAutomaticAnimationQuad.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9FBC251-848A-4A85-8F07-6551E7A7A4C6}|OpenGLGlutGlfwShaderTemplate\\OpenGLGlutGlfwShaderTemplate.vcxproj|C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Lab-3\\OpenGLGlutGlfwShaderTemplate\\Week3-2-AutomaticAnimationCube.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C9FBC251-848A-4A85-8F07-6551E7A7A4C6}|OpenGLGlutGlfwShaderTemplate\\OpenGLGlutGlfwShaderTemplate.vcxproj|solutionrelative:OpenGLGlutGlfwShaderTemplate\\Week3-2-AutomaticAnimationCube.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9FBC251-848A-4A85-8F07-6551E7A7A4C6}|OpenGLGlutGlfwShaderTemplate\\OpenGLGlutGlfwShaderTemplate.vcxproj|C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Lab-3\\OpenGLGlutGlfwShaderTemplate\\prepShader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C9FBC251-848A-4A85-8F07-6551E7A7A4C6}|OpenGLGlutGlfwShaderTemplate\\OpenGLGlutGlfwShaderTemplate.vcxproj|solutionrelative:OpenGLGlutGlfwShaderTemplate\\prepShader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Week3-7-UniformDemo.cpp",
+              "DocumentMoniker": "C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Week3\\Week3-7-UniformDemo.cpp",
+              "RelativeDocumentMoniker": "..\\Week3\\Week3-7-UniformDemo.cpp",
+              "ToolTip": "C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Week3\\Week3-7-UniformDemo.cpp",
+              "RelativeToolTip": "..\\Week3\\Week3-7-UniformDemo.cpp",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAAAIUAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-18T21:51:54.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Week3-6-InteractiveAnimationCube.cpp",
+              "DocumentMoniker": "C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Week3\\Week3-6-InteractiveAnimationCube.cpp",
+              "RelativeDocumentMoniker": "..\\Week3\\Week3-6-InteractiveAnimationCube.cpp",
+              "ToolTip": "C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Week3\\Week3-6-InteractiveAnimationCube.cpp",
+              "RelativeToolTip": "..\\Week3\\Week3-6-InteractiveAnimationCube.cpp",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-18T21:45:13.016Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Week3-4-SemiAutomaticAnimationQuad.cpp",
+              "DocumentMoniker": "C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Lab-3\\OpenGLGlutGlfwShaderTemplate\\Week3-4-SemiAutomaticAnimationQuad.cpp",
+              "RelativeDocumentMoniker": "OpenGLGlutGlfwShaderTemplate\\Week3-4-SemiAutomaticAnimationQuad.cpp",
+              "ToolTip": "C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Lab-3\\OpenGLGlutGlfwShaderTemplate\\Week3-4-SemiAutomaticAnimationQuad.cpp",
+              "RelativeToolTip": "OpenGLGlutGlfwShaderTemplate\\Week3-4-SemiAutomaticAnimationQuad.cpp",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-18T21:17:16.341Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Week3-3-SemiAutomaticAnimationCube.cpp",
+              "DocumentMoniker": "C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Lab-3\\OpenGLGlutGlfwShaderTemplate\\Week3-3-SemiAutomaticAnimationCube.cpp",
+              "RelativeDocumentMoniker": "OpenGLGlutGlfwShaderTemplate\\Week3-3-SemiAutomaticAnimationCube.cpp",
+              "ToolTip": "C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Lab-3\\OpenGLGlutGlfwShaderTemplate\\Week3-3-SemiAutomaticAnimationCube.cpp",
+              "RelativeToolTip": "OpenGLGlutGlfwShaderTemplate\\Week3-3-SemiAutomaticAnimationCube.cpp",
+              "ViewState": "AgIAAMUAAAAAAAAAAAAIwMgAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-18T21:06:23.914Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Week3-2-AutomaticAnimationCube.cpp",
+              "DocumentMoniker": "C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Lab-3\\OpenGLGlutGlfwShaderTemplate\\Week3-2-AutomaticAnimationCube.cpp",
+              "RelativeDocumentMoniker": "OpenGLGlutGlfwShaderTemplate\\Week3-2-AutomaticAnimationCube.cpp",
+              "ToolTip": "C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Lab-3\\OpenGLGlutGlfwShaderTemplate\\Week3-2-AutomaticAnimationCube.cpp",
+              "RelativeToolTip": "OpenGLGlutGlfwShaderTemplate\\Week3-2-AutomaticAnimationCube.cpp",
+              "ViewState": "AgIAAM0AAAAAAAAAAAAAAM8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-18T20:54:57.751Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "prepShader.cpp",
+              "DocumentMoniker": "C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Lab-3\\OpenGLGlutGlfwShaderTemplate\\prepShader.cpp",
+              "RelativeDocumentMoniker": "OpenGLGlutGlfwShaderTemplate\\prepShader.cpp",
+              "ToolTip": "C:\\Users\\theda\\Documentos\\Repos\\OpenGL\\Lab-3\\OpenGLGlutGlfwShaderTemplate\\prepShader.cpp",
+              "RelativeToolTip": "OpenGLGlutGlfwShaderTemplate\\prepShader.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-11T20:16:04.737Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

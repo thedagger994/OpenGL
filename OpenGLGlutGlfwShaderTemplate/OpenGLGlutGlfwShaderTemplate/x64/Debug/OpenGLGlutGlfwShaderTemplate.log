@@ -1,0 +1,5 @@
+﻿  prepShader.cpp
+C:\Users\theda\Documentos\Repos\OpenGL\OpenGLGlutGlfwShaderTemplate\OpenGLGlutGlfwShaderTemplate\prepShader.cpp(5,10): error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  testGlutWithShader.cpp
+C:\Users\theda\Documentos\Repos\OpenGL\OpenGLGlutGlfwShaderTemplate\OpenGLGlutGlfwShaderTemplate\testGlutWithShader.cpp(39,10): error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  Generating Code...
