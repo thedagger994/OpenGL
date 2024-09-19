@@ -1,3 +1,20 @@
-﻿  Week3-7-UniformDemo.cpp
-C:\Users\theda\Documentos\Repos\OpenGL\Week3\Week3-7-UniformDemo.cpp(172,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+﻿  Week3-4-SemiAutomaticAnimationQuad.cpp
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(76,17): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(77,16): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(78,13): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(78,13): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(78,20): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(79,13): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(79,13): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(79,21): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(109,17): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(110,16): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(111,13): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(111,13): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(111,20): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(112,13): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(112,13): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(112,21): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(141,18): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\OpenGLGlutGlfwShaderTemplate\Week3-4-SemiAutomaticAnimationQuad.cpp(152,18): warning C4305: '-=': truncation from 'double' to 'float'
   OpenGLGlutGlfwShaderTemplate.vcxproj -> C:\Users\theda\Documentos\Repos\OpenGL\Lab-3\x64\Debug\OpenGLGlutGlfwShaderTemplate.exe
