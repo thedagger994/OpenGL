@@ -140,7 +140,10 @@ int main() {
         return -1;
     }
 
-
+    GLuint vsDefault = CreateShader(GL_VERTEX_SHADER, "./assets/shaders/Default.vert");
+    GLuint fsDefault = CreateShader(GL_FRAGMENT_SHADER, "./assets/shaders/Default.frag");
+    GLuint shaderDefault = CreateProgram(vsDefault, fsDefault);
+    glUseProgram(shaderDefault);
     
     //Vector3 positions[] = {
     //    { -1.0f, -1.0f, 0.0f },
