@@ -27,6 +27,24 @@ Vertex triangle[3] = {
 
 Vertex vertices[NUM_VERTICES];
 
+void generateSierpinskiTriangle() {
+    srand(time(NULL));
+
+    vertices[0] = triangle[rand() % 3];
+
+    for (int i = 1; i < NUM_VERTICES; i++) {
+        int n = rand() % 3;
+        Vertex prev = vertices[i - 1];
+        Vertex current = triangle[n];
+
+        vertices[i].x = (prev.x + current.x) / 2.0f;
+        vertices[i].y = (prev.y + current.y) / 2.0f;
+        vertices[i].r = current.r;
+        vertices[i].g = current.g;
+        vertices[i].b = current.b;
+    }
+}
+
 GLuint CreateShader(GLint type, const char* path)
 {
     GLuint shader = 0;
