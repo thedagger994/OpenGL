@@ -9,6 +9,8 @@
 #include <sstream>
 #include <array>
 #include "prepShader.h"
+#include <map>
+#include <vector>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -33,8 +35,11 @@ GLuint vao, vbo, ebo, texture;
 GLuint ground_vao, ground_vbo, ground_ebo;
 GLuint texCoords_vbo;
 GLuint textureID;
+std::map<int, GLuint> digitVAOs;
 
 GLint width, height, bitDepth;
+
+GLuint numberProgram;
 
 glm::mat4 model, view, projection;
 glm::vec3 cameraPos = glm::vec3(0.0f, 1.5f, 5.0f);
@@ -120,7 +125,6 @@ std::vector<Vertex> LoadOBJ(const char* filename) {
                     continue;
                 }
 
-                // Ensure indices are within bounds
                 if (p - 1 >= positions.size() || t - 1 >= texCoords.size() || n - 1 >= normals.size()) {
                     std::cerr << "Error: Face indices out of range in OBJ file." << std::endl;
                     continue;
@@ -136,7 +140,6 @@ std::vector<Vertex> LoadOBJ(const char* filename) {
     for (unsigned int i = 0; i < posIndices.size(); i++) {
         Vertex vertex;
 
-        // Perform bounds checking before accessing the vectors
         if (posIndices[i] >= positions.size() || texIndices[i] >= texCoords.size() || normalIndices[i] >= normals.size()) {
             std::cerr << "Error: Skipping invalid indices during vertex assembly." << std::endl;
             continue;
@@ -150,9 +153,85 @@ std::vector<Vertex> LoadOBJ(const char* filename) {
     }
 
     std::cout << "Loaded OBJ file: " << filename << std::endl;
-    std::cout << "Vertices loaded: " << vertices.size() << std::endl;
+    std::cout << "Loaded " << vertices.size() << " vertices from " << filename << std::endl;
 
     return vertices;
+}
+
+std::map<int, std::vector<Vertex>> digitModels;
+
+void loadDigitModels() {
+    for (int i = 0; i <= 9; i++) {
+        std::string filename = "models/" + std::to_string(i) + ".obj";
+
+        digitModels[i] = LoadOBJ(filename.c_str());
+
+        if (digitModels[i].empty()) {
+            std::cerr << "Error: Failed to load model for digit " << i << " (" << filename << ")" << std::endl;
+        }
+        else {
+            std::cout << "Loaded model for digit " << i << " with "
+                << digitModels[i].size() << " vertices." << std::endl;
+        }
+    }
+}
+
+void loadDigitVAOs() {
+    for (int i = 0; i <= 9; i++) {
+        GLuint vao, vbo;
+        glGenVertexArrays(1, &vao);
+        glGenBuffers(1, &vbo);
+
+        glBindVertexArray(vao);
+
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        glBufferData(GL_ARRAY_BUFFER, digitModels[i].size() * sizeof(Vertex), &digitModels[i][0], GL_STATIC_DRAW);
+
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
+        glEnableVertexAttribArray(0);
+
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, normal));
+        glEnableVertexAttribArray(1);
+
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, texCoord));
+        glEnableVertexAttribArray(2);
+
+        glBindVertexArray(0);
+        digitVAOs[i] = vao;
+    }
+}
+
+std::vector<int> piDigits = { 3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3 , 2, 3, 8, 4, 6, 2, 6, 4, 3, 3, 8, 3, 2, 7, 9, 5, 0, 2, 8, 8, 4, 1, 9, 7, 1, 6, 9, 3, 9, 9, 3, 7, 5, 1, 0, 5, 8, 2, 0, 9, 7, 4, 9, 4, 4, 5, 9, 2, 3, 0, 7, 8, 1, 6, 4, 0, 6, 2, 8, 6, 2, 8, 9, 9, 8, 6, 2, 8, 0, 3, 4, 8};
+
+glm::vec3 digitColors[10] = {
+    glm::vec3(1.0, 1.0, 1.0),
+    glm::vec3(0.0, 1.0, 0.0),
+    glm::vec3(0.0, 0.0, 1.0),
+    glm::vec3(1.0, 1.0, 0.0),
+    glm::vec3(1.0, 0.0, 1.0),
+    glm::vec3(0.0, 1.0, 1.0),
+    glm::vec3(1.0, 0.5, 0.0),
+    glm::vec3(0.5, 0.0, 1.0),
+    glm::vec3(0.5, 0.5, 0.5),
+    glm::vec3(1.0, 0.0, 0.0)
+};
+
+void initNumberShader() {
+    GLuint vertexShaderId = setShader("vertex", "vertex_shader.glsl");
+    GLuint fragmentShaderId = setShader("fragment", "number_fragment_shader.glsl");
+
+    numberProgram = glCreateProgram();
+    glAttachShader(numberProgram, vertexShaderId);
+    glAttachShader(numberProgram, fragmentShaderId);
+    glLinkProgram(numberProgram);
+
+    GLint success;
+    glGetProgramiv(numberProgram, GL_LINK_STATUS, &success);
+    if (!success) {
+        char infoLog[512];
+        glGetProgramInfoLog(numberProgram, 512, NULL, infoLog);
+        std::cerr << "ERROR: Number Shader Program linking failed:\n" << infoLog << std::endl;
+    }
 }
 
 int main(int argc, char** argv) {
@@ -161,10 +240,11 @@ int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowSize(1024, 768);
-    glutCreateWindow("Assignment 5");
+    glutCreateWindow("Final Assignment");
 
     glewInit();
     init();
+    initNumberShader();
 
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
@@ -174,6 +254,7 @@ int main(int argc, char** argv) {
     glutTimerFunc(0, timer, 0);
     glutMainLoop();
 
+ 
     return 0;
 }
 
@@ -182,6 +263,10 @@ void init() {
     fragmentShaderId = setShader("fragment", "fragment_shader.glsl");
     groundVertexShaderId = setShader("vertex", "ground_vertex_shader.glsl");
     groundFragmentShaderId = setShader("fragment", "ground_fragment_shader.glsl");
+
+    initNumberShader();
+    loadDigitModels();
+    loadDigitVAOs();
 
     program = glCreateProgram();
     glAttachShader(program, vertexShaderId);
@@ -213,14 +298,14 @@ void init() {
 
     glEnable(GL_DEPTH_TEST);
 
-    modelVertices = LoadOBJ("C:/Users/theda/Documentos/Repos/OpenGL/Assignment 5/model.obj");
+    modelVertices = LoadOBJ("model.obj");
     if (modelVertices.empty()) {
         std::cerr << "Error: Model could not be loaded. Check your OBJ file." << std::endl;
         exit(EXIT_FAILURE);
     }
 
     setupBuffers();
-    loadTexture("C:/Users/theda/Documentos/Repos/OpenGL/Assignment 5/texture.jpg");
+    loadTexture("texture.jpg");
 }
 
 void display() {
@@ -229,83 +314,69 @@ void display() {
 
     float time = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
     float radius = 5.0f;
-    glm::vec3 pointLightPos(
-        radius * cos(time),
-        1.0f,
-        radius * sin(time)
-    );
+    glm::vec3 pointLightPos = glm::vec3(5.0f * cos(time), 3.0f, 5.0f * sin(time));
+    glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
 
     glUseProgram(program);
-
-    // Set directional light
-    glm::vec3 lightDir = glm::normalize(glm::vec3(-10.0f, -10.0f, -10.0f));
-    glUniform3fv(glGetUniformLocation(program, "lightDir"), 1, glm::value_ptr(lightDir));
-
-    // Set spotlight
-    glUniform3fv(glGetUniformLocation(program, "spotlightPos"), 1, glm::value_ptr(spotlightPos));
-    glUniform3fv(glGetUniformLocation(program, "spotlightDir"), 1, glm::value_ptr(spotlightDir));
-    glUniform1f(glGetUniformLocation(program, "spotlightCutOff"), spotlightCutOff);
-    glUniform1f(glGetUniformLocation(program, "spotlightOuterCutOff"), spotlightOuterCutOff);
-
-    // Set point light
-    glUniform3fv(glGetUniformLocation(program, "pointLightPos"), 1, glm::value_ptr(pointLightPos));
-    glUniform1f(glGetUniformLocation(program, "constantAttenuation"), 1.0f);
-    glUniform1f(glGetUniformLocation(program, "linearAttenuation"), 0.09f);
-    glUniform1f(glGetUniformLocation(program, "quadraticAttenuation"), 0.032f);
-
-    // Set camera position
     view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-    glUniform3fv(glGetUniformLocation(program, "viewPos"), 1, glm::value_ptr(cameraPos));
-
-    // Set light color
-    glUniform3f(glGetUniformLocation(program, "lightColor"), 1.0f, 1.0f, 1.0f);
-
-    glUniformMatrix4fv(glGetUniformLocation(program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
     glUniformMatrix4fv(glGetUniformLocation(program, "view"), 1, GL_FALSE, glm::value_ptr(view));
+    glUniformMatrix4fv(glGetUniformLocation(program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+    glBindTexture(GL_TEXTURE_2D, texture);
 
     model = glm::mat4(1.0f);
     glUniformMatrix4fv(glGetUniformLocation(program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-    glBindTexture(GL_TEXTURE_2D, texture);
     glBindVertexArray(vao);
     glDrawArrays(GL_TRIANGLES, 0, modelVertices.size());
     glBindVertexArray(0);
 
-
+    glUniform3fv(glGetUniformLocation(program, "lightPos"), 1, glm::value_ptr(pointLightPos));
+    glUniform3fv(glGetUniformLocation(program, "lightColor"), 1, glm::value_ptr(lightColor));
+    glUniform3fv(glGetUniformLocation(program, "viewPos"), 1, glm::value_ptr(cameraPos));
 
     glUseProgram(groundProgram);
 
-// Set directional light
-    glUniform3fv(glGetUniformLocation(groundProgram, "lightDir"), 1, glm::value_ptr(lightDir));
-
-    // Set spotlight
-    glUniform3fv(glGetUniformLocation(groundProgram, "spotlightPos"), 1, glm::value_ptr(spotlightPos));
-    glUniform3fv(glGetUniformLocation(groundProgram, "spotlightDir"), 1, glm::value_ptr(spotlightDir));
-    glUniform1f(glGetUniformLocation(groundProgram, "spotlightCutOff"), spotlightCutOff);
-    glUniform1f(glGetUniformLocation(groundProgram, "spotlightOuterCutOff"), spotlightOuterCutOff);
-
-    // Set point light
-    glUniform3fv(glGetUniformLocation(groundProgram, "pointLightPos"), 1, glm::value_ptr(pointLightPos));
-    glUniform1f(glGetUniformLocation(groundProgram, "constantAttenuation"), 1.0f);
-    glUniform1f(glGetUniformLocation(groundProgram, "linearAttenuation"), 0.09f);
-    glUniform1f(glGetUniformLocation(groundProgram, "quadraticAttenuation"), 0.032f);
-
-    // Set camera position
-    glUniform3fv(glGetUniformLocation(groundProgram, "viewPos"), 1, glm::value_ptr(cameraPos));
-
-    // Set light color
-    glUniform3f(glGetUniformLocation(groundProgram, "lightColor"), 1.0f, 1.0f, 1.0f);
-
-    // Set matrices
     glUniformMatrix4fv(glGetUniformLocation(groundProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
     glUniformMatrix4fv(glGetUniformLocation(groundProgram, "view"), 1, GL_FALSE, glm::value_ptr(view));
     model = glm::mat4(1.0f);
     glUniformMatrix4fv(glGetUniformLocation(groundProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
+
+    glUniform3fv(glGetUniformLocation(groundProgram, "viewPos"), 1, glm::value_ptr(cameraPos));
     glUniform3f(glGetUniformLocation(groundProgram, "groundColor"), 0.5f, 0.5f, 0.5f);
+
+    glUniform3fv(glGetUniformLocation(groundProgram, "lightPos"), 1, glm::value_ptr(pointLightPos));
+    glUniform3fv(glGetUniformLocation(groundProgram, "lightColor"), 1, glm::value_ptr(lightColor));
 
     glBindVertexArray(ground_vao);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 
+    glUseProgram(numberProgram);
+    glUniform3fv(glGetUniformLocation(numberProgram, "lightPos"), 1, glm::value_ptr(glm::vec3(10.0f, 10.0f, 10.0f)));
+    glUniform3fv(glGetUniformLocation(numberProgram, "viewPos"), 1, glm::value_ptr(cameraPos));
+    glUniform3f(glGetUniformLocation(numberProgram, "lightColor"), 1.0f, 1.0f, 1.0f);
+
+    for (size_t i = 0; i < piDigits.size(); i++) {
+        int digit = piDigits[i];
+
+        float theta = i * 0.5f + time;
+        float r = radius + i * 0.5f;
+        float x = r * cos(theta);
+        float y = 0.1f * i;
+        float z = r * sin(theta);
+
+        glm::mat4 digitModel = glm::mat4(1.0f);
+        digitModel = glm::translate(digitModel, glm::vec3(x, y, z));
+        digitModel = glm::rotate(digitModel, time, glm::vec3(0.0f, 1.0f, 0.0f));
+
+        glUniformMatrix4fv(glGetUniformLocation(numberProgram, "model"), 1, GL_FALSE, glm::value_ptr(digitModel));
+        glUniformMatrix4fv(glGetUniformLocation(numberProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(glGetUniformLocation(numberProgram, "view"), 1, GL_FALSE, glm::value_ptr(view));
+        glUniform3fv(glGetUniformLocation(numberProgram, "objectColor"), 1, glm::value_ptr(digitColors[digit]));
+
+        glBindVertexArray(digitVAOs[digit]);
+        glDrawArrays(GL_TRIANGLES, 0, digitModels[digit].size());
+        glBindVertexArray(0);
+    }
 
     glutSwapBuffers();
 }
@@ -379,7 +450,6 @@ void motion(int x, int y) {
     glutPostRedisplay();
 }
 
-
 void setupBuffers() {
     if (modelVertices.empty()) {
         std::cerr << "Error: No vertices available for buffer setup." << std::endl;
@@ -430,10 +500,10 @@ void setupBuffers() {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ground_ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(groundIndices), groundIndices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0); // Position
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float))); // Normal
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
     glBindVertexArray(0);
